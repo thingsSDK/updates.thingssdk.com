@@ -1,0 +1,16 @@
+{
+  "name": "things-hub",
+  "version": "1.0.0",
+  "description": "HQ for all the things",
+  "main": "index.js",
+  "scripts": {
+    "start": "PORT=3000 node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "thingsSDK",
+    "auto-updater"
+  ],
+  "author": "Craig Dennis <craig@teamtreehouse.com>",
+  "license": "ISC"
+}

@@ -4,13 +4,19 @@
   "description": "HQ for all the things",
   "main": "index.js",
   "scripts": {
-    "start": "PORT=3000 node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "PORT=80 node index.js",
+    "dev": "NODE_ENV=development PORT=3000 ./node_modules/.bin/nodemon index.js"
   },
   "keywords": [
     "thingsSDK",
     "auto-updater"
   ],
   "author": "Craig Dennis <craig@teamtreehouse.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.9.1"
+  },
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }

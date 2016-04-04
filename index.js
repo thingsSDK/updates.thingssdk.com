@@ -9,21 +9,22 @@ const app = express();
 
 app.use("/updates/releases", express.static(path.join(__dirname, "releases")));
 
-app.get("/updates/latest", (req, res) => {
-    const latest = getLatestRelease();
+app.get("/updates/:productName/latest", (req, res) => {
+    const productName = req.param("productName");
+    const latest = getLatestRelease(productName);
     const clientVersion = req.query.v;
 
     if (clientVersion === latest) {
         res.status(204).end();
     } else {
         res.json({
-            url: `${getBaseUrl()}/releases/darwin/${latest}/MyApp.zip`
+            url: `${getBaseUrl()}/updates/releases/${productName}/darwin/${latest}/${productName}.zip`
         });
   }
 });
 
-let getLatestRelease = () => {
-    const dir = `${__dirname}/releases/darwin`;
+let getLatestRelease = (productName) => {
+    const dir = `${__dirname}/releases/${productName}/darwin`;
 
     const versionsDesc = fs.readdirSync(dir).filter((file) => {
         const filePath = path.join(dir, file);
@@ -37,7 +38,7 @@ let getBaseUrl = () => {
     if (process.env.NODE_ENV === "development") {
         return "http://localhost:3000";
     } else {
-        return "http://download.mydomain.com";
+        return "http://thingsSDK.com";
     }
 };
 
